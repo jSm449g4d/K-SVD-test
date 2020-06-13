@@ -17,7 +17,7 @@ plt.title("origin");plt.imshow(im,vmin=0.0, vmax=1.0);plt.show()
 patches=im.reshape(-1,8,8)
 
 patchesC = patches.reshape(-1,64).astype(np.float64)
-ksvd = KSVD(n_components = 12, transform_n_nonzero_coefs = 5)
+ksvd = KSVD(n_components = 12, transform_n_nonzero_coefs = None ,n_jobs=12)
 X = ksvd.fit_transform(patchesC)
 D = ksvd.components_
 
