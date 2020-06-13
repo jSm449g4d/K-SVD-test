@@ -12,3 +12,4 @@ https://www.irasutoya.com/2019/12/blog-post_14.html
 ### description
 **ksvd.py** how to use spm-image  
 **ksvd2.py** When a dictionary created with one image is used with another
+**ksvd3.py** test color and images which are used by fit
