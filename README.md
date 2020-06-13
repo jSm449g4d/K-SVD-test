@@ -1,6 +1,7 @@
 # space-test
 ## HowToUse
-0. plz download materials and put on this directory.
+0. plz download materials and put on this directory.  
+   `$ bash apple2orange.sh`
 1. plz run python file by spyder  
 ### requirement
 https://github.com/hacarus/spm-image  
