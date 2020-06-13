@@ -2,9 +2,8 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 from spmimage.decomposition import KSVD
-from sklearn.preprocessing import StandardScaler
-import skimage.io
-import skimage.util
+from skimage.metrics import peak_signal_noise_ratio as compare_psnr
+from skimage.metrics import structural_similarity as compare_ssim
 
 def concat_tile(im_list_2d):
     return cv2.vconcat([cv2.hconcat(im_list_h) for im_list_h in im_list_2d])
@@ -43,3 +42,6 @@ _y=np.dot(X, D)
 _y = _y.reshape(128, 128).astype(np.float64)
 plt.imshow(_y,vmin=0.0, vmax=1.0)
 plt.show()
+
+print(compare_psnr(im, _y))
+print(compare_ssim(im, _y))
