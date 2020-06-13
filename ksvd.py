@@ -14,11 +14,9 @@ im = cv2.resize(im, dsize=(128, 128), interpolation=cv2.INTER_CUBIC)/256.0
 im=np.clip(im, 0.001, 0.999)
 plt.title("origin");plt.imshow(im,vmin=0.0, vmax=1.0);plt.show()
 
-patches=im.reshape(-1,8,8)
-
-patchesC = patches.reshape(-1,64).astype(np.float64)
 ksvd = KSVD(n_components = 12, transform_n_nonzero_coefs = None ,n_jobs=12)
-X = ksvd.fit_transform(patchesC)
+ksvd.fit(im.reshape(-1,64).astype(np.float64))
+X = ksvd.transform(im.reshape(-1,64).astype(np.float64))
 D = ksvd.components_
 
 plt.title("D")
