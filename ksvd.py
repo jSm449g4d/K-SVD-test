@@ -16,30 +16,25 @@ plt.title("origin");plt.imshow(im,vmin=0.0, vmax=1.0);plt.show()
 
 ksvd = KSVD(n_components = 12, transform_n_nonzero_coefs = None ,n_jobs=12)
 ksvd.fit(im.reshape(-1,64).astype(np.float64))
-X = ksvd.transform(im.reshape(-1,64).astype(np.float64))
-D = ksvd.components_
 
-plt.title("D")
-plt.imshow(D,vmin=0.0, vmax=1.0)
-plt.show()
-
-plt.title("D2")
+D = ksvd.components_.reshape(-1, 8,8).astype(np.float64)
 for i in range(12):
-    D1=D.reshape(-1, 8,8).astype(np.float64)
     plt.subplot(3, 4, i+1)
-    plt.imshow(D1[i],vmin=0.0, vmax=1.0)
+    plt.imshow(D[i],vmin=0.0, vmax=1.0)
     plt.axis('off')
 plt.show()
 
+X = ksvd.transform(im.reshape(-1,64).astype(np.float64))
 plt.title("X")
 plt.imshow(X,vmin=0.0, vmax=1.0)
 plt.show()
 
 plt.title("Re")
-_y=np.dot(X, D)
+_y=np.dot(X, ksvd.components_)
 _y = _y.reshape(128, 128).astype(np.float64)
 plt.imshow(_y,vmin=0.0, vmax=1.0)
 plt.show()
 
 print(compare_psnr(im, _y))
 print(compare_ssim(im, _y))
+
